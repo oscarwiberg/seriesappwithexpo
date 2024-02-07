@@ -1,15 +1,24 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from './screens/SearchScreen';
 import DetailScreen from './screens/DetailScreen';
 
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
   
   return (
+    
     <SafeAreaView style={styles.container}>
-      <SearchScreen />
-      {/* <DetailScreen/> */}
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName="Search">
+        <Stack.Screen name="Search series" component={SearchScreen} />
+        <Stack.Screen name="Details" component={DetailScreen} />
+      </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 } 
@@ -18,8 +27,6 @@ export default function App() {
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    marginTop: 150,
-    marginBottom:65
   },
 });
 

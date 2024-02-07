@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
 const DetailScreen: React.FC = () => {
   // Implement detailed view logic here
@@ -9,6 +9,7 @@ const DetailScreen: React.FC = () => {
   return (
     <View>
       <Text>Detail Screen</Text>
+      <Button title="Go to Search Screen" />
     </View>
   );
 };

@@ -18,7 +18,11 @@ const SearchScreen: React.FC = () => {
   const renderListItem = ({ item }) => {
     return (
       <TouchableOpacity style = {styles.itemWrapper}>
-        <Image style = {styles.itemImage} source={{uri: item.show.image.medium}} />
+        {item.show.image && item.show.image.medium ? (
+        <Image style={styles.itemImage} source={{ uri: item.show.image.original }} />
+        ) : (
+        <Text style={styles.noPictureText}>No picture</Text>
+        )}
         <View style = {styles.textContentWrapper}>
         <Text style = {styles.itemTitle}>{item.show.name}</Text>
         {item.show.rating && item.show.rating.average ? (<Text style = {styles.itemRating}>{item.show.rating.average}</Text>) : (<Text style = {styles.itemRating}>No rating to be shown</Text>)}
@@ -28,7 +32,7 @@ const SearchScreen: React.FC = () => {
   };
 
   return (
-    <View>
+    <View style={styles.listContainer}>
       <TextInput
         placeholder="Search TV Series"
         value={query}
@@ -47,7 +51,10 @@ const SearchScreen: React.FC = () => {
 
 
 const styles = StyleSheet.create({
-    itemWrapper: {
+  listContainer: {
+    paddingBottom: 150,
+  }, 
+  itemWrapper: {
         flexDirection: 'row',
         padding: 16,
         borderBottomWidth: 1,
@@ -68,16 +75,22 @@ const styles = StyleSheet.create({
         color: "#777",
     },
     searchInput: {
-        borderWidth: 2,
+        borderWidth: 4,
+        backgroundColor: "white",
         borderColor: "#ddd",
         borderRadius: 5,
-        width:200,
+        width:250,
         height:50,
         alignSelf: "center",
         marginBottom: 30,
+        marginTop: 30,
         textAlign: "center",
         fontSize: 16,
     },
+    noPictureText: {
+      fontSize: 10,
+      color: 'red',
+    }
 })
 
 export default SearchScreen;
