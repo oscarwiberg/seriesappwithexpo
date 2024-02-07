@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, Button, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Image, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { searchSeries } from '../services/api';
 
 const SearchScreen: React.FC = () => {
@@ -17,13 +17,13 @@ const SearchScreen: React.FC = () => {
 
   const renderListItem = ({ item }) => {
     return (
-      <View style = {styles.itemWrapper}>
+      <TouchableOpacity style = {styles.itemWrapper}>
         <Image style = {styles.itemImage} source={{uri: item.show.image.medium}} />
         <View style = {styles.textContentWrapper}>
         <Text style = {styles.itemTitle}>{item.show.name}</Text>
         {item.show.rating && item.show.rating.average ? (<Text style = {styles.itemRating}>{item.show.rating.average}</Text>) : (<Text style = {styles.itemRating}>No rating to be shown</Text>)}
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

@@ -1,12 +1,14 @@
-//import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
-import SearchScreen from './components/SearchScreen';
-import DetailScreen from './components/DetailScreen';
+import SearchScreen from './screens/SearchScreen';
+import DetailScreen from './screens/DetailScreen';
+
 
 export default function App() {
+
+  
   return (
     <SafeAreaView style={styles.container}>
-      <SearchScreen/>
+      <SearchScreen />
       {/* <DetailScreen/> */}
     </SafeAreaView>
   );
