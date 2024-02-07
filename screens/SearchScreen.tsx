@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { searchSeries } from '../services/api';
+import { useNavigation } from '@react-navigation/native';
+
 
 const SearchScreen: React.FC = () => {
+
+  const navigation = useNavigation();
+
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -15,11 +20,11 @@ const SearchScreen: React.FC = () => {
     }
   };
 
-  const renderListItem = ({ item }) => {
+  const renderListItem = ({ item, navigation }) => {
     return (
-      <TouchableOpacity style = {styles.itemWrapper}>
+      <TouchableOpacity onPress={() => navigation.navigate('Details', {serieObj: item} )} style = {styles.itemWrapper}>
         {item.show.image && item.show.image.medium ? (
-        <Image style={styles.itemImage} source={{ uri: item.show.image.original }} />
+        <Image style={styles.itemImage} source={{ uri: item.show.image.medium }} />
         ) : (
         <Text style={styles.noPictureText}>No picture</Text>
         )}
@@ -28,6 +33,8 @@ const SearchScreen: React.FC = () => {
         {item.show.rating && item.show.rating.average ? (<Text style = {styles.itemRating}>{item.show.rating.average}</Text>) : (<Text style = {styles.itemRating}>No rating to be shown</Text>)}
         </View>
       </TouchableOpacity>
+
+      
     );
   };
 
@@ -43,7 +50,7 @@ const SearchScreen: React.FC = () => {
       <FlatList
         data={results}
         keyExtractor={(item) => item.show.id.toString()}
-        renderItem={renderListItem}
+        renderItem={({ item }) => renderListItem({ item, navigation })}
       />
     </View>
   );

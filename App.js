@@ -7,7 +7,7 @@ import DetailScreen from './screens/DetailScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App({navigation}) {
 
   
   return (
@@ -15,8 +15,8 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
       <Stack.Navigator initialRouteName="Search">
-        <Stack.Screen name="Search series" component={SearchScreen} />
-        <Stack.Screen name="Details" component={DetailScreen} />
+        <Stack.Screen name="Search"  component={SearchScreen} options={{ title: 'Search series' }} />
+        <Stack.Screen name="Details"  component={DetailScreen} />
       </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

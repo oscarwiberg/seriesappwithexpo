@@ -1,17 +1,35 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
-const DetailScreen: React.FC = () => {
-  // Implement detailed view logic here
+const DetailScreen = ({route}) => {
 
-  
+  console.log("------------");
+  const serie = route.params.serieObj.show;
 
   return (
     <View>
-      <Text>Detail Screen</Text>
-      <Button title="Go to Search Screen" />
+      {serie.image && serie.image.medium ? (
+        <Image style={styles.image} source={{ uri: serie.image.medium }} />
+        ) : (
+        <Text style={styles.noPictureText}>No picture</Text>
+        )}
+      <Text>{serie.name}</Text>
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  image: {
+    height: 50,
+    width: 50
+  },
+  noPictureText: {
+    fontSize: 10,
+    color: 'red',
+  }
+})
+
 export default DetailScreen;
+
+//  <Image source={{ uri: item.show.image.original }} />
+// 
