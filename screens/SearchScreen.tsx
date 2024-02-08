@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { searchSeries } from '../services/api';
 import { useNavigation } from '@react-navigation/native';
+import {Series} from '../types';
 
 
 const SearchScreen: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState<string>('');
+  const [results, setResults] = useState<Series[]>([]);
 
   const handleSearch = async () => {
     try {
@@ -20,7 +21,8 @@ const SearchScreen: React.FC = () => {
     }
   };
 
-  const renderListItem = ({ item, navigation }) => {
+  const renderListItem = (item: Series, navigation: any) => {
+    (console.log(item, "----------"));
     return (
       <TouchableOpacity onPress={() => navigation.navigate('Details', {serieObj: item} )} style = {styles.itemWrapper}>
         {item.show.image && item.show.image.medium ? (
@@ -50,7 +52,7 @@ const SearchScreen: React.FC = () => {
       <FlatList
         data={results}
         keyExtractor={(item) => item.show.id.toString()}
-        renderItem={({ item }) => renderListItem({ item, navigation })}
+        renderItem={({ item }) => renderListItem(item, navigation )}
       />
     </View>
   );
