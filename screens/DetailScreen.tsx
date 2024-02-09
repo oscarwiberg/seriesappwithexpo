@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 const DetailScreen = ({route}) => {
 
-  const serie = route.params.serieObj.show;
+  const series = route.params.seriesObj.show;
 
   const removeHtmlTags = (string) => {
     return string ? string.replace(/<[^>]+>/g, '') : '';
@@ -12,20 +12,20 @@ const DetailScreen = ({route}) => {
 
   return (
     <View style = {styles.container}>
-      {serie.image && serie.image.medium ? (
-        <Image style={styles.image} source={{ uri: serie.image.medium }} />
+      {series.image && series.image.medium ? (
+        <Image style={styles.image} source={{ uri: series.image.medium }} />
         ) : (
         <Text style={styles.noPictureText}>No picture</Text>
         )}
-      <Text style={styles.heading}>{serie.name}</Text>
-      <Text style={styles.serieDetail}>Language: {serie.language ? (serie.language) : 'No language'}</Text>
-      <Text style={styles.serieDetail}>Genres:</Text>
-        {serie.genres.map((genre, index) => (
+      <Text style={styles.heading}>{series.name}</Text>
+      <Text style={styles.seriesDetail}>Language: {series.language ? (series.language) : 'No language'}</Text>
+      <Text style={styles.seriesDetail}>Genres:</Text>
+        {series.genres.map((genre, index) => (
           <Text style={styles.detailInfo} key={index}>{genre}</Text> 
         ))}
     
-      <Text style={styles.serieDetail}>Rating: {serie.rating && serie.rating.average ? serie.rating.average : 'No rating to be shown'} </Text> 
-      <Text style={styles.detailInfo}>{serie.summary ? removeHtmlTags(serie.summary) : 'No Summary'}</Text>
+      <Text style={styles.seriesDetail}>Rating: {series.rating && series.rating.average ? series.rating.average : 'No rating to be shown'} </Text> 
+      <Text style={styles.detailInfo}>{series.summary ? removeHtmlTags(series.summary) : 'No Summary'}</Text>
     </View>
   );
 };
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginVertical: 20,
   },
-  serieDetail: {
+  seriesDetail: {
     paddingVertical:5,
   },
   detailInfo: {

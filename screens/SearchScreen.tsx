@@ -30,7 +30,7 @@ const SearchScreen: React.FC = () => {
   const renderListItem = (item: Series, navigation: any) => {
     
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('Details', {serieObj: item} )} style = {styles.itemWrapper}>
+      <TouchableOpacity onPress={() => navigation.navigate('Details', {seriesObj: item} )} style = {styles.itemWrapper}>
         {item.show.image && item.show.image.medium ? (
         <Image style={styles.itemImage} source={{ uri: item.show.image.medium }} />
         ) : (
