@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const DetailScreen = ({route}) => {
+const DetailScreen = ({route}: any) => {
 
   const series = route.params.seriesObj.show;
 
-  const removeHtmlTags = (string) => {
+  const removeHtmlTags = (string: string) => {
     return string ? string.replace(/<[^>]+>/g, '') : '';
   };
   
@@ -20,7 +20,7 @@ const DetailScreen = ({route}) => {
       <Text style={styles.heading}>{series.name}</Text>
       <Text style={styles.seriesDetail}>Language: {series.language ? (series.language) : 'No language'}</Text>
       <Text style={styles.seriesDetail}>Genres:</Text>
-        {series.genres.map((genre, index) => (
+        {series.genres.map((genre : string, index: number) => (
           <Text style={styles.detailInfo} key={index}>{genre}</Text> 
         ))}
     
