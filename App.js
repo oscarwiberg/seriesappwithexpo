@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchScreen from './screens/SearchScreen';
@@ -7,7 +7,7 @@ import DetailScreen from './screens/DetailScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function App({navigation}) {
+export default function App() {
 
   
   return (
