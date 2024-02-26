@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, TextInput, Button, FlatList, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { searchSeries } from '../services/api';
 import { useNavigation } from '@react-navigation/native';
 import {Series} from '../types';
 
-
 const SearchScreen: React.FC = () => {
-
+  
   const navigation = useNavigation();
 
   const [query, setQuery] = useState<string>('');
